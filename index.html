@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Ambedkar Pancharatan</title>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+        font-family: 'Poppins', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 50px;
+        padding-bottom: 80px;
+        color: #222;
+        overflow-x: hidden;
+        background: linear-gradient(
+            to bottom,
+            #ffddb3 33.33%,
+            #f9f9f9 33.33%,
+            #f9f9f9 66.66%,
+            #d3e8d3 66.66%
+        );
+    }
+
+    /* Neon marquee */
+    .marquee-top {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 45px;
+        background: #001F3F;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        z-index: 9999;
+        user-select: none;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .marquee-text {
+        display: inline-block;
+        white-space: nowrap;
+        font-size: 1.5rem;
+        font-weight: 900;
+        color: #00FFFF;
+        text-shadow:
+            0 0 5px #00FFFF,
+            0 0 15px #00FFFF,
+            0 0 20px #0ff,
+            0 0 30px #0ff,
+            0 0 40px #0ff;
+        animation: marquee 15s linear infinite;
+        padding-left: 100%;
+    }
+
+    @keyframes marquee {
+        0%   { transform: translateX(0%); }
+        100% { transform: translateX(-100%); }
+    }
+
+    /* Main Heading */
+    h1{
+        text-align:center;
+        font-size:3rem;
+        margin:25px auto;
+
+        color:#0D47A1; /* fallback */
+        background:linear-gradient(180deg,#FF9933,#ffffff,#138808);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+
+        text-shadow:0 3px 8px rgba(0,0,0,.25);
+        user-select: none;
+        padding: 10px 30px;
+        border-radius: 15px;
+        box-shadow: inset 0 0 15px #FF9933, inset 0 0 25px #138808, 0 4px 12px rgba(0,0,0,0.3);
+        max-width: 90vw;
+    }
+
+    /* Buttons container */
+    .buttons {
+        margin: 30px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 18px;
+        max-width: 95vw;
+        z-index: 100;
+    }
+
+    /* Buttons */
+    button {
+        background: linear-gradient(135deg, #0D47A1, #42A5F5);
+        border: none;
+        border-radius: 40px;
+        color: white;
+        font-weight: 700;
+        font-size: 1.2rem;
+        padding: 14px 28px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.4);
+        transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+        user-select: none;
+        min-width: 120px;
+        text-align: center;
+    }
+    button:hover {
+        background: linear-gradient(135deg, #42A5F5, #0D47A1);
+        transform: translateY(-6px);
+        box-shadow: 0 12px 26px rgba(0, 123, 255, 0.7);
+    }
+
+    /* Content Boxes */
+    .box {
+        background: #fff;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        padding: 25px 35px;
+        max-width: 720px;
+        width: 90vw;
+        margin-bottom: 30px;
+        display: none;
+        animation: fadeInUp 0.6s ease forwards;
+        color: #111;
+        line-height: 1.6;
+        user-select: text;
+    }
+    @keyframes fadeInUp {
+        from { opacity:0; transform:translateY(30px); }
+        to { opacity:1; transform:translateY(0); }
+    }
+    h2 { text-align:center; font-size:2.2rem; color:#0D47A1; margin-bottom:18px; user-select:none; letter-spacing:1.1px; }
+    h3 { font-weight:700; margin-top:20px; color:#1976d2; border-bottom:3px solid #42a5f5; padding-bottom:5px; }
+    ol, ul { margin-left:20px; font-size:1.1rem; }
+    li { margin:12px 0; }
+
+    .contact-number, .total-amount { text-align:center; font-weight:700; color:#0D47A1; }
+
+    iframe { width:100%; height:280px; border-radius:14px; border:none; box-shadow:0 8px 20px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+    iframe:hover { transform: scale(1.03); }
+
+    .gallery { display: flex; flex-wrap: wrap; gap:16px; justify-content:center; }
+    .gallery img { width:140px; height:90px; object-fit:cover; border-radius:12px; box-shadow:0 5px 12px rgba(0,0,0,0.15); cursor:pointer; transition: transform 0.3s ease; }
+    .gallery img:hover { transform:scale(1.1); box-shadow:0 12px 20px rgba(0,0,0,0.25); }
+
+    form { max-width:420px; margin:0 auto; display:flex; flex-direction:column; gap:14px; }
+    input, textarea { padding:12px 16px; font-size:1rem; border-radius:10px; border:2px solid #42a5f5; resize:none; transition:border-color 0.3s; }
+    input:focus, textarea:focus { border-color:#0D47A1; outline:none; box-shadow:0 0 8px #42a5f5; }
+    button.submit-btn { background:#0D47A1; color:white; border-radius:30px; padding:14px; font-size:1.1rem; cursor:pointer; transition: background-color 0.3s ease; border:none; font-weight:700; box-shadow:0 8px 16px rgba(0,0,255,0.4); }
+    button.submit-btn:hover { background:#42a5f5; box-shadow:0 12px 22px rgba(0,123,255,0.7); }
+
+    blockquote { font-style:italic; border-left:6px solid #42a5f5; padding-left:18px; margin:20px 0; color:#444; background:#f0f8ff; border-radius:10px; box-shadow:0 3px 12px rgba(66,165,245,0.2); }
+    blockquote footer { font-weight:600; margin-top:8px; color:#1976d2; }
+
+    .social-links { display:flex; justify-content:center; gap:30px; font-size:28px; margin-top:20px; }
+    .social-links a { color:#0D47A1; transition: color 0.3s; }
+    .social-links a:hover { color:#42a5f5; }
+
+    footer {
+        position: fixed; bottom:0; width:100%;
+        background:#001F3F;
+        display:flex; justify-content:center; gap:18px; padding:14px 0; box-shadow:0 -3px 15px rgba(0,0,0,0.4);
+        z-index:1000; flex-wrap:wrap;
+    }
+    footer button { background:#42a5f5; color:white; border:none; border-radius:30px; padding:10px 22px; font-weight:700; font-size:1rem; cursor:pointer; box-shadow:0 6px 14px rgba(0,123,255,0.5); transition: background-color 0.3s ease; }
+    footer button:hover { background:#0D47A1; box-shadow:0 10px 20px rgba(0,66,255,0.8); }
+
+    @media(max-width:750px){
+        h1 { font-size:2.8rem; }
+        .box { width:95vw; }
+        .buttons, footer { justify-content:center; gap:12px; }
+        button { min-width:100px; font-size:1rem; padding:12px 20px; }
+        .gallery img { width:110px; height:70px; }
+    }
+</style>
+
+<script>
+    function hideAll() {
+        const sections = document.querySelectorAll('.box, .gallery');
+        sections.forEach(sec => sec.style.display = 'none');
+    }
+    function showSection(id, displayStyle = 'block') {
+        hideAll();
+        const el = document.getElementById(id);
+        if(el) el.style.display = displayStyle;
+    }
+    function showMission() { showSection('mission'); }
+    function showUpcoming() { showSection('upcoming'); }
+    function showGallery() { showSection('gallery', 'flex'); }
+    function showVolunteer() { showSection('volunteer'); }
+    function showNews() { showSection('news'); }
+    function showDonation() { showSection('donation'); }
+    function showTestimonials() { showSection('testimonials'); }
+    function showLocation() { showSection('location'); }
+    function showMembers() { showSection('members'); }
+    function showWork() { showSection('work'); }
+    function showPayments() { showSection('payments'); }
+    function showNeonExpenses() { showSection('neonExpenses'); }
+
+    function submitVolunteerForm(e) {
+        e.preventDefault();
+        alert('Thank you for volunteering! We will contact you soon.');
+        e.target.reset();
+    }
+    window.onload = () => { showMission(); };
+</script>
+
+</head>
+<body>
+
+<div class="marquee-top">
+    <div class="marquee-text">💙 Jai Bheem Jai Bharat 💙</div>
+</div>
+
+<h1>Ambedkar Pancharatan</h1>
+
+<div class="buttons">
+    <button onclick="showMission()">Mission</button>
+    <button onclick="showUpcoming()">Upcoming Events</button>
+    <button onclick="showGallery()">Gallery</button>
+    <button onclick="showVolunteer()">Volunteer</button>
+    <button onclick="showNews()">News</button>
+    <button onclick="showDonation()">Donations</button>
+    <button onclick="showTestimonials()">Testimonials</button>
+    <button onclick="showLocation()">Location</button>
+    <button onclick="showMembers()">Members</button>
+    <button onclick="showWork()">Work</button>
+    <button onclick="showPayments()">Payments</button>
+    <button onclick="showNeonExpenses()">Expenses</button>
+</div>
+
+<!-- Sections -->
+<section class="mission box" id="mission">
+    <h2>Our Mission</h2>
+    <p>To unite and uplift our community through dedicated social service, education, and empowerment, striving to build a better and brighter future for all.</p>
+</section>
+
+<section class="upcoming box" id="upcoming">
+    <h2>Upcoming Events</h2>
+    <ul>
+        <li><strong>15 Jan 2026:</strong> Cleanliness of Buddhavihar</li>
+        <li><strong>14 Apr 2026:</strong> Exam will be conducted</li>
+        <li><strong>10 Mar 2026:</strong> Awareness Seminar on Education Rights</li>
+    </ul>
+</section>
+
+<section class="gallery" id="gallery" style="display:none;">
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80" alt="Social Work 1" title="Social Work 1" />
+    <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=400&q=80" alt="Social Work 2" title="Social Work 2" />
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="Social Work 3" title="Social Work 3" />
+    <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=400&q=80" alt="Social Work 4" title="Social Work 4" />
+</section>
+
+<section class="volunteer box" id="volunteer">
+    <h2>Volunteer Sign-Up</h2>
+    <form onsubmit="submitVolunteerForm(event)">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <textarea name="message" rows="3" placeholder="Why do you want to volunteer?" required></textarea>
+        <button type="submit" class="submit-btn">Sign Up</button>
+    </form>
+</section>
+
+<section class="news box" id="news">
+    <h2>News & Announcements</h2>
+    <ul>
+        <li>We successfully completed the 14 April 2025 exam event. Thanks to all volunteers!</li>
+        <li>Neon light signature installation scheduled for 25 December 2025.</li>
+        <li>Join our next cleanliness drive in January 2026.</li>
+    </ul>
+</section>
+
+<section class="donation box" id="donation">
+    <h2>Donation Information</h2>
+    <p>Your support helps us continue our social work. You can donate via bank transfer or online payment.</p>
+    <p><strong>Bank Account:</strong> 1234567890 (Bank Name)</p>
+    <p><strong>UPI ID:</strong> ambedkarpancharatan@upi</p>
+</section>
+
+<section class="testimonials box" id="testimonials">
+    <h2>Testimonials</h2>
+    <blockquote>
+        "Ambedkar Pancharatan has made a huge difference in our community. Proud to be a part of it!"
+        <footer>- Ramesh K.</footer>
+    </blockquote>
+    <blockquote>
+        "Thanks to their awareness programs, I got access to education I never thought possible."
+        <footer>- Sita P.</footer>
+    </blockquote>
+</section>
+
+<section class="location box" id="location">
+    <h2>Our Location</h2>
+    <iframe src="https://maps.google.com/maps?q=Shekhupur%20Raura%20District%20Bulandshahr&t=&z=14&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" title="Location Map"></iframe>
+</section>
+
+<section class="members box" id="members">
+    <h2>Members</h2>
+    <ol>
+        <li>Deepanshu</li>
+        <li>Happy</li>
+        <li>Preet</li>
+        <li>Abhishek</li>
+        <li>Saurabh</li>
+    </ol>
+</section>
+
+<section class="work box" id="work">
+    <h2>Work</h2>
+    <ol>
+        <li>Exam conducted on 14 April 2025</li>
+        <li>Neon light of signature on 25 December 2025</li>
+    </ol>
+</section>
+
+<section class="payments box" id="payments">
+    <h2>Payments Received</h2>
+    <h3>Exam</h3>
+    <ol>
+        <li>Anubhav - ₹1000</li>
+        <li>Vishvratan - ₹1000</li>
+        <li>Bheempriya - ₹1000</li>
+        <li>Deepanshu - ₹300</li>
+        <li>Happy - ₹300</li>
+        <li>Preet - ₹300</li>
+        <li>Abhishek - ₹300</li>
+        <li>Saurabh - ₹300</li>
+    </ol>
+    <h3>Neon Light</h3>
+    <ol>
+        <li>Pavan - ₹500</li>
+        <li>Nitin Pradhan - ₹500</li>
+        <li>Suraj - ₹500</li>
+        <li>Ankit - ₹500</li>
+        <li>Sachin - ₹500</li>
+        <li>Prashant - ₹500</li>
+        <li>Vishvratan - ₹300</li>
+        <li>Baghi Prashant - ₹300</li>
+        <li>Hitesh Lekhpal - ₹250</li>
+        <li>Anubhav - ₹250</li>
+        <li>Atul Kezriwal - ₹200</li>
+        <li>Lala Rishipal - ₹200</li>
+        <li>Rishipal Master Ji - ₹200</li>
+        <li>Shivam Beenu - ₹200</li>
+        <li>Sumit - ₹200</li>
+        <li>Vishal Sonal - ₹200</li>
+    </ol>
+</section>
+
+<section class="neonExpenses box" id="neonExpenses">
+    <h2>Neon Light Expenses</h2>
+    <p class="total-amount">Total Expense: ₹4000</p>
+</section>
+
+<footer>
+    <button onclick="showMission()">Mission</button>
+    <button onclick="showUpcoming()">Upcoming Events</button>
+    <button onclick="showGallery()">Gallery</button>
+    <button onclick="showVolunteer()">Volunteer</button>
+</footer>
+
+</body>
+</html>
